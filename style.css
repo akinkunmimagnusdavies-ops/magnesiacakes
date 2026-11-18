@@ -1,0 +1,95 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.head-logo img{
+  margin: 10px;
+  border-radius: 50%;
+}
+
+nav{
+  display: flex;
+  flex-direction: row;
+}
+
+nav,.search{
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.nav-links,a{
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  text-decoration: none;
+  gap: 10px;
+  margin: 10px;
+  justify-content: space-evenly;
+}
+
+.catch{
+  display: flex;
+  flex-direction: column;
+  background: url(/images/logo.jpg);
+  padding: 40px;
+  border-radius: 30px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: repeat;
+}
+
+.catch,h2{
+  text-align: left;
+  margin-left: 25px;
+  padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  font-style: italic;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  margin: auto auto;
+}
+
+span{
+  color: yellow;
+}
+
+.statements{
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+}
+
+.statements h2{
+  text-align: center;
+  font-size: 22px;
+  color: red;
+}
+
+.statements p{
+  text-align: center;
+  font-weight: bold;
+}
+
+.statements h4,h1{
+  color: red;
+  text-align: center;
+}
+
+.statement-content{
+  margin-bottom: 40px;
+}
