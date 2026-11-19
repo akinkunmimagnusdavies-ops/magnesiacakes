@@ -55,7 +55,7 @@
       <p>Very fast delivery, we deliver even at the shortest notice</p>
     </div>
     <div class="client-anime">
-      <h1>101,231</h1>
+      <h1 id="counter">0</h1>
       <h4>Successful Deliveries</h4>
     </div>
   </div>
@@ -82,6 +82,26 @@
       bar.classList.remove('open');
     }
   });
+
+  // Animated Counter: 0 -> 101,231 in 2.5 seconds
+const counter = document.getElementById('counter');
+const target = 101231;
+const duration = 2500; // 2.5 seconds - change to 2000 or 3000 if you want
+const startTime = performance.now();
+
+function animateCount(now) {
+  const progress = Math.min((now - startTime) / duration, 1);
+  // Ease-out: fast at start, slows down at end - looks smooth
+  const eased = 1 - Math.pow(1 - progress, 3);
+  const current = Math.floor(eased * target);
+  counter.textContent = current.toLocaleString(); // adds commas: 101,231
+
+  if (progress < 1) {
+    requestAnimationFrame(animateCount);
+  }
+}
+
+requestAnimationFrame(animateCount);
 </script>
 </body>
 </html>
