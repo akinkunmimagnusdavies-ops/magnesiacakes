@@ -9,24 +9,38 @@
 <body>
   <header>
     <div class="head-logo">
-      <img src="images/logo.jpg" alt="Business Logo" width="100" height="100">
+      <img src="images/logo.jpg" alt="Magnesia Cakes Logo">
     </div>
-    <nav>
-      <div class="search"><img src="images/icon1.png" alt="" width="20" height="20"></div>
-      <div class="nav-links">
-        <li><a href="">Home</a></li>
-        <li><a href="">All Cakes</a></li>
-        <li><a href="">Birthday Cakes</a></li>
-        <li><a href="">Deserts</a></li>
-      </div>
-    </nav>
-    
- </header>
 
-    <!-- <h2 class="catch">
-      Order Magnesia Cakes, Baked with Premium Gladness and Love for the Satifaction of Our Esteemed Cake Lovers from as low as ₦22,500 <br> <br> Quickest Delivery <br>Free Sparklers <br>Abuja's No 1 Trusted Premium Cake Store
-    </h2>
- -->
+    <nav>
+      <!-- Search Area -->
+      <div class="search-wrap">
+        <input type="text" id="searchBar" class="search-bar" placeholder="Search cakes...">
+        <button class="search-btn" onclick="toggleSearch()" aria-label="Search">
+          <img src="images/icon1.png" alt="Search" width="20" height="20">
+        </button>
+      </div>
+
+      <!-- Nav Links -->
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">All Cakes</a></li>
+        <li><a href="#">Birthday Cakes</a></li>
+        <li><a href="#">Desserts</a></li>
+      </ul>
+
+      <!-- Hamburger for mobile -->
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </nav>
+  </header>
+
+  <!-- Hero / Catch -->
+  <section class="catch">
+    <h2>Order Magnesia Cakes, Baked with Premium Gladness and Love for the Satisfaction of Our Esteemed Cake Lovers from as low as <span>₦22,500</span></h2>
+    <p>Quickest Delivery<br>Free Sparklers<br>Abuja's No 1 Trusted Premium Cake Store</p>
+    <a href="#" class="cta-btn">Order Now →</a>
+  </section>
+
   <div class="statements">
     <div class="statement-content">
       <h2>💰 Affordable</h2>
@@ -37,14 +51,37 @@
       <p>We add free sparklers to any cake you order from us</p>
     </div>
     <div class="statement-content">
-      <h2>🚁✈️🏃🏻 Express Shipping</h2>
+      <h2>🚀✔️🏃🏽 Express Shipping</h2>
       <p>Very fast delivery, we deliver even at the shortest notice</p>
     </div>
     <div class="client-anime">
       <h1>101,231</h1>
-      <h4>Sucessfull Deliveries</h4>
+      <h4>Successful Deliveries</h4>
     </div>
   </div>
-  
+
+<script>
+  function toggleSearch() {
+    const bar = document.getElementById('searchBar');
+    bar.classList.toggle('open');
+    if (bar.classList.contains('open')) {
+      bar.focus();
+    }
+  }
+
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    links.classList.toggle('show');
+  }
+
+  // Close search when you click outside
+  document.addEventListener('click', function(e) {
+    const wrap = document.querySelector('.search-wrap');
+    const bar = document.getElementById('searchBar');
+    if (!wrap.contains(e.target)) {
+      bar.classList.remove('open');
+    }
+  });
+</script>
 </body>
 </html>
