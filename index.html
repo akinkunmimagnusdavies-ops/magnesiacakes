@@ -61,47 +61,63 @@
   </div>
 
 <script>
-  function toggleSearch() {
-    const bar = document.getElementById('searchBar');
-    bar.classList.toggle('open');
-    if (bar.classList.contains('open')) {
-      bar.focus();
-    }
-  }
-
-  function toggleMenu() {
-    const links = document.querySelector('.nav-links');
-    links.classList.toggle('show');
-  }
-
-  // Close search when you click outside
-  document.addEventListener('click', function(e) {
-    const wrap = document.querySelector('.search-wrap');
-    const bar = document.getElementById('searchBar');
-    if (!wrap.contains(e.target)) {
-      bar.classList.remove('open');
-    }
-  });
-
-  // Animated Counter: 0 -> 101,231 in 2.5 seconds
-const counter = document.getElementById('counter');
-const target = 101231;
-const duration = 2500; // 2.5 seconds - change to 2000 or 3000 if you want
-const startTime = performance.now();
-
-function animateCount(now) {
-  const progress = Math.min((now - startTime) / duration, 1);
-  // Ease-out: fast at start, slows down at end - looks smooth
-  const eased = 1 - Math.pow(1 - progress, 3);
-  const current = Math.floor(eased * target);
-  counter.textContent = current.toLocaleString(); // adds commas: 101,231
-
-  if (progress < 1) {
-    requestAnimationFrame(animateCount);
+ // --- Search ---
+function toggleSearch() {
+  const bar = document.getElementById('searchBar');
+  bar.classList.toggle('open');
+  if (bar.classList.contains('open')) {
+    bar.focus();
   }
 }
 
-requestAnimationFrame(animateCount);
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  links.classList.toggle('show');
+}
+
+// Close search when you click outside
+document.addEventListener('click', function(e) {
+  const wrap = document.querySelector('.search-wrap');
+  const bar = document.getElementById('searchBar');
+  if (!wrap.contains(e.target)) {
+    bar.classList.remove('open');
+  }
+});
+
+// --- Counter: Only when visible on screen ---
+const counter = document.getElementById('counter');
+const target = 101231;
+const duration = 2500; // 2.5 seconds
+let hasCounted = false;
+
+function startCount() {
+  const startTime = performance.now();
+
+  function animateCount(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3); // smooth ease-out
+    counter.textContent = Math.floor(eased * target).toLocaleString();
+    if (progress < 1) {
+      requestAnimationFrame(animateCount);
+    }
+  }
+  requestAnimationFrame(animateCount);
+}
+
+const observer = new IntersectionObserver((entries) => {
+  // entries[0].isIntersecting = true when the number is on screen
+  if (entries[0].isIntersecting && !hasCounted) {
+    hasCounted = true;
+    startCount();
+    observer.unobserve(counter); // run only once, don't restart
+  }
+}, {
+  threshold: 0.5 // wait until at least 50% of the number is visible
+});
+
+if (counter) {
+  observer.observe(counter);
+}
 </script>
 </body>
 </html>
